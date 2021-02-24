@@ -1,0 +1,19 @@
+{
+	"name": "lumite-studios/haunt-core",
+	"description": "",
+    "type": "project",
+    "authors": [
+        {
+            "name": "Lumite Studios",
+            "email": "hello@lumitestudios.com"
+        }
+    ],
+	"minimum-stability": "stable",
+    "require": {
+		"laravel/framework": "^8.29"
+	},
+	"require-dev": {
+		"orchestra/testbench": "^6.13",
+		"fakerphp/faker": "^1.13"
+	}
+}
