@@ -9,7 +9,7 @@ on:
 jobs:
   testing:
     runs-on: ubuntu-latest
-    steps: testing
+    steps:
       - name: checkout
         uses: actions/checkout@v2
       - name: install dependencies
