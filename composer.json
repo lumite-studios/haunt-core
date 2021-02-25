@@ -10,10 +10,30 @@
     ],
 	"minimum-stability": "stable",
     "require": {
+        "php": "^8.0",
 		"laravel/framework": "^8.29"
 	},
 	"require-dev": {
 		"orchestra/testbench": "^6.13",
 		"fakerphp/faker": "^1.13"
+	},
+    "extra": {
+        "download-dist": {
+            "url": "https://github.com/lumite-studios/haunt-core/releases/download/{$version}/dist.tar.gz",
+            "path": "resources/dist"
+        },
+        "laravel": {
+            "aliases": {
+                "Haunt": "Haunt\\Haunt"
+            },
+            "providers": [
+                "Haunt\\Providers\\HauntServiceProvider"
+            ]
+        }
+    },
+	"autoload": {
+		"psr-4": {
+			"Haunt\\": "src"
+		}
 	}
 }
