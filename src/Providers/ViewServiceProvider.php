@@ -12,6 +12,6 @@ class ViewServiceProvider extends ServiceProvider
      */
     public function boot()
     {
-		$this->commands($this->commands);
+
 	}
 }

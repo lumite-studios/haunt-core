@@ -16,7 +16,7 @@ class AppServiceProvider extends ServiceProvider
 	];
 
 	/**
-	 * The direct path.	 *
+	 * The direct path.
 	 * @var string
 	 */
     private $root = __DIR__.'/../..';

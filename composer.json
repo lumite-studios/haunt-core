@@ -11,7 +11,8 @@
 	"minimum-stability": "stable",
     "require": {
         "php": "^8.0",
-		"laravel/framework": "^8.29"
+		"laravel/framework": "^8.29",
+		"jean85/pretty-package-versions": "^2.0"
 	},
 	"require-dev": {
 		"orchestra/testbench": "^6.13",
@@ -34,6 +35,11 @@
 	"autoload": {
 		"psr-4": {
 			"Haunt\\": "src"
+		}
+	},
+	"autoload-dev": {
+		"psr-4": {
+			"Tests\\": "tests"
 		}
 	},
 	"scripts": {
