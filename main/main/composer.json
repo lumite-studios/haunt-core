@@ -1,0 +1,59 @@
+{
+	"name": "lumite-studios/haunt-core",
+	"description": "",
+    "type": "project",
+    "authors": [
+        {
+            "name": "Lumite Studios",
+            "email": "hello@lumitestudios.com"
+        }
+    ],
+	"minimum-stability": "stable",
+    "require": {
+        "php": "^8.0",
+		"laravel/framework": "^8.29",
+		"jean85/pretty-package-versions": "^2.0"
+	},
+	"require-dev": {
+		"orchestra/testbench": "^6.13",
+		"fakerphp/faker": "^1.13"
+	},
+    "extra": {
+        "download-dist": {
+            "url": "https://github.com/lumite-studios/haunt-core/releases/download/{$version}/dist.tar.gz",
+            "path": "resources/dist"
+        },
+        "laravel": {
+            "aliases": {
+                "Haunt": "Haunt\\Haunt"
+            },
+            "providers": [
+                "Haunt\\Providers\\HauntServiceProvider"
+            ]
+        }
+    },
+	"autoload": {
+		"psr-4": {
+			"Haunt\\": "src"
+		}
+	},
+	"autoload-dev": {
+		"psr-4": {
+			"Tests\\": "tests"
+		}
+	},
+	"scripts": {
+		"test": [
+			"@putenv XDEBUG_MODE=develop",
+			"phpunit"
+		],
+		"test-filter": [
+			"@putenv XDEBUG_MODE=develop",
+			"phpunit --filter"
+		],
+		"test-coverage": [
+			"@putenv XDEBUG_MODE=coverage",
+			"phpunit --coverage-clover=coverage.xml"
+		]
+	}
+}
