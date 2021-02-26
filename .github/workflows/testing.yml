@@ -10,13 +10,13 @@ jobs:
   testing:
     runs-on: ubuntu-latest
     steps:
-      - name: checkout
+      - name: Checkout
         uses: actions/checkout@v2
-      - name: install dependencies
+      - name: Install Dependencies
         run: 'composer install --prefer-dist --no-progress --no-suggest'
-      - name: run tests
+      - name: Run Tests
         run: 'composer test-coverage'
-      - name: upload to codecov
+      - name: Upload Codecov
         uses: codecov/codecov-action@v1.2.1
         with:
           token: ${{ secrets.CODECOV_TOKEN }}
