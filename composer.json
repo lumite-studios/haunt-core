@@ -12,7 +12,9 @@
     "require": {
         "php": "^8.0",
 		"laravel/framework": "^8.29",
-		"jean85/pretty-package-versions": "^2.0"
+		"jean85/pretty-package-versions": "^2.0",
+		"livewire/livewire": "^2.4",
+		"0.0.0/composer-include-files": "^1.6"
 	},
 	"require-dev": {
 		"orchestra/testbench": "^6.13",
@@ -23,6 +25,9 @@
             "url": "https://github.com/lumite-studios/haunt-core/releases/download/{$version}/dist.tar.gz",
             "path": "resources/dist"
         },
+        "include_files": [
+			"src/Helpers/override.php"
+        ],
         "laravel": {
             "aliases": {
                 "Haunt": "Haunt\\Haunt"
