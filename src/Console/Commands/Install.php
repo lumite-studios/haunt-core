@@ -50,9 +50,6 @@ class Install extends Command
 		foreach($directories as $dir) {
 			if(!File::isDirectory($dir)) {
 				File::makeDirectory($dir);
-			}
-			if(!File::exists($gitkeep = $dir.'\\.gitkeep')) {
-				File::put($gitkeep, '');
 				$this->info('Created the <comment>'.$dir.'</comment> directory.');
 			}
 		}
