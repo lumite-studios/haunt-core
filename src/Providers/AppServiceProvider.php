@@ -2,6 +2,7 @@
 namespace Haunt\Providers;
 
 use Illuminate\Support\ServiceProvider;
+use Illuminate\Support\Str;
 
 class AppServiceProvider extends ServiceProvider
 {
@@ -11,6 +12,7 @@ class AppServiceProvider extends ServiceProvider
 	 */
 	private $config = [
 		'admin',
+		'livewire',
 		'plugins',
 		'themes',
 	];
@@ -34,10 +36,28 @@ class AppServiceProvider extends ServiceProvider
 			$this->publishes([$this->root.'/config/'.$con.'.php' => config_path('haunt/'.$con.'.php')], 'haunt');
 		});
 
+		// plugins
+		$this->publishes([$this->root.'/src/' => plugin_path('HauntCore')], 'haunt');
+
 		// themes
 		$this->publishes([$this->root.'/resources/themes' => resource_path('themes')], 'haunt');
 
 		// views
 		$this->loadViewsFrom($this->root.'/resources/views', 'haunt');
+	}
+
+	/**
+	 * Register any application services.
+	 *
+	 * @return void
+	 */
+	public function register()
+	{
+		// helpers
+		$helpers = collect(glob($this->root.'/src/Helpers/*.php'))->filter(function($filename) {
+			return !Str::contains($filename, 'override');
+		})->each(function($filename) {
+			require_once($filename);
+		});
 	}
 }
