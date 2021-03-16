@@ -1,7 +1,4 @@
 <?php
-/**
- *
- */
 namespace Haunt\Console\Commands;
 
 use Illuminate\Console\Command;
@@ -31,8 +28,9 @@ class Install extends Command
 	public function handle()
 	{
 		$this->createDirectories()
-			->publish()
-			->clearCache();
+			 ->updateDatabaseConfig()
+			 ->publish()
+			 ->clearCache();
 	}
 
 	/**
@@ -51,6 +49,38 @@ class Install extends Command
 			if(!File::isDirectory($dir)) {
 				File::makeDirectory($dir);
 				$this->info('Created the <comment>'.$dir.'</comment> directory.');
+			}
+		}
+
+		return $this;
+	}
+
+	/**
+	 * Add the haunt connection to the database config.
+	 *
+	 * @return Install
+	 */
+	private function updateDatabaseConfig()
+	{
+		$connect = "'connections' => [";
+		$path = config_path('database.php');
+		if(file_exists($path)) {
+			$content = file_get_contents($path);
+			if(!str_contains($content, 'haunt')) {
+				$pos = strpos($content, $connect) + strlen($connect);
+
+				$connection = "
+		'haunt' => [
+			'driver' => env('HAUNT_DRIVER', 'mysql'),
+			'host' => env('HAUNT_HOST', 'localhost'),
+			'database' => env('HAUNT_DATABASE', ''),
+			'username' => env('HAUNT_USERNAME', ''),
+			'password' => env('HAUNT_PASSWORD', ''),
+			'prefix' => env('HAUNT_TABLE_PREFIX', 'hnt_'),
+		],
+		";
+
+				file_put_contents($path, substr_replace($content, $connection, $pos, 0));
 			}
 		}
 

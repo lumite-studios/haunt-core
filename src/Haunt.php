@@ -15,10 +15,10 @@ class Haunt
 	 * The root path.
 	 * @var string
 	 */
-    private $root = __DIR__.'/../';
+	private $root = __DIR__.'/../';
 
 	/**
-	 * Get the installed version of Haunt.
+	 * Get an installed version of a composer package.
 	 *
 	 * @since 0.1.0
 	 *
