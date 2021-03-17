@@ -29,6 +29,7 @@ class Install extends Command
 	{
 		$this->createDirectories()
 			 ->updateDatabaseConfig()
+			 ->refreshPlugins()
 			 ->publish()
 			 ->clearCache();
 	}
@@ -95,6 +96,18 @@ class Install extends Command
 	private function publish()
 	{
 		$this->call('vendor:publish', ['--tag' => 'haunt']);
+
+		return $this;
+	}
+
+	/**
+	 * Refresh the plugins manifest.
+	 *
+	 * @return Install
+	 */
+	private function refreshPlugins()
+	{
+		$this->call('haunt:refresh-plugins');
 
 		return $this;
 	}

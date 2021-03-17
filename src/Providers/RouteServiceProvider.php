@@ -20,14 +20,5 @@ class RouteServiceProvider extends ServiceProvider
     public function boot()
     {
 		// register the core routes
-
-
-
-		// helpers
-		collect(glob($this->root.'/src/Helpers/*.php'))->filter(function($filename) {
-			return !Str::contains($filename, 'override');
-		})->each(function($filename) {
-			require_once($filename);
-		});
 	}
 }

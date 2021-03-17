@@ -14,7 +14,7 @@ class Routes
 	 */
 	public static function getAdminRoutes(): void
 	{
-		$plugin = new Plugin;
-		require_once($plugin->routes['admin']);
+		//$plugin = new Plugin;
+		//require_once($plugin->routes['admin']);
 	}
 }

@@ -2,6 +2,7 @@
 namespace Haunt\Providers;
 
 use Haunt\Console\Commands\Install;
+use Haunt\Console\Commands\RefreshPlugins;
 use Illuminate\Support\ServiceProvider;
 
 class ConsoleServiceProvider extends ServiceProvider
@@ -12,6 +13,7 @@ class ConsoleServiceProvider extends ServiceProvider
 	 */
 	private $commands = [
 		Install::class,
+		RefreshPlugins::class,
 	];
 
 	/**

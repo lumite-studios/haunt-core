@@ -1,6 +1,8 @@
 <?php
 namespace Haunt\Providers;
 
+use Haunt\Plugin\Manifest;
+use Illuminate\Filesystem\Filesystem;
 use Illuminate\Support\ServiceProvider;
 use Illuminate\Support\Str;
 
@@ -37,7 +39,7 @@ class AppServiceProvider extends ServiceProvider
 		});
 
 		// plugin
-		$this->publishes([$this->root.'/src/Core' => plugin_path('HauntCore')], 'haunt');
+		//$this->publishes([$this->root.'/src/Core' => plugin_path('HauntCore')], 'haunt');
 
 		// routes
 		$this->loadRoutesFrom($this->root.'/routes/routes.php');
@@ -62,5 +64,21 @@ class AppServiceProvider extends ServiceProvider
 		})->each(function($filename) {
 			require_once($filename);
 		});
+
+		$this->registerPluginManifest();
 	}
+
+	/**
+	 * Register the manifest class for plugins.
+	 *
+	 * @return void
+	 */
+	protected function registerPluginManifest()
+    {
+        $this->app->instance(Manifest::class, new Manifest(
+            new Filesystem,
+            $this->app->basePath(),
+            $this->app->bootstrapPath().'/cache/plugins.php'
+        ));
+    }
 }
