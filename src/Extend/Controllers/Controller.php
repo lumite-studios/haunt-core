@@ -1,5 +1,5 @@
 <?php
-namespace Haunt\Extend;
+namespace Haunt\Extend\Controllers;
 
 use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
 use Illuminate\Foundation\Bus\DispatchesJobs;

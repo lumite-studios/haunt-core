@@ -1,9 +1,9 @@
 <?php
 namespace Haunt\Http\Controllers\Admin;
 
-use Haunt\Extend\Controller;
+use Haunt\Extend\Controllers\AdminController;
 
-class DashboardController extends Controller
+class DashboardController extends AdminController
 {
 	public function index()
 	{
