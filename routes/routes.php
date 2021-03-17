@@ -1,6 +1,6 @@
 <?php
 
-use Haunt\Plugin\Routes;
+use Facades\Haunt\Plugin\Routes;
 use Illuminate\Support\Facades\Route;
 
 // admin routes

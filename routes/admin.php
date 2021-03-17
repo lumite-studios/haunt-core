@@ -1,5 +1,6 @@
 <?php
 
+use Haunt\Http\Controllers\Admin\DashboardController;
 use Illuminate\Support\Facades\Route;
 
-Route::get('/', 'CoreController@test');
+Route::get('/', [DashboardController::class, 'index']);

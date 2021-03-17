@@ -18,7 +18,9 @@ class Manifest extends PackageManifest
 		$this->write(collect(File::directories(plugin_path()))->flatMap(function($directory) {
 			$path = $directory.'\\theme.json';
 			if(File::exists($path)) {
-				return [$directory => json_decode(File::get($path), true)];
+				$content = json_decode(File::get($path), true);
+				$content['directory'] = $directory;
+				return [$content];
 			}
 		})->filter()->all());
 

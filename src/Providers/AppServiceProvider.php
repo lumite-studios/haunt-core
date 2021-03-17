@@ -1,8 +1,6 @@
 <?php
 namespace Haunt\Providers;
 
-use Haunt\Plugin\Manifest;
-use Illuminate\Filesystem\Filesystem;
 use Illuminate\Support\ServiceProvider;
 use Illuminate\Support\Str;
 
@@ -58,27 +56,20 @@ class AppServiceProvider extends ServiceProvider
 	 */
 	public function register()
 	{
-		// helpers
+		$this->registerHelpers();
+	}
+
+	/**
+	 * Register the helper files.
+	 *
+	 * @return void
+	 */
+	protected function registerHelpers()
+	{
 		collect(glob($this->root.'/src/Helpers/*.php'))->filter(function($filename) {
 			return !Str::contains($filename, 'override');
 		})->each(function($filename) {
 			require_once($filename);
 		});
-
-		$this->registerPluginManifest();
 	}
-
-	/**
-	 * Register the manifest class for plugins.
-	 *
-	 * @return void
-	 */
-	protected function registerPluginManifest()
-    {
-        $this->app->instance(Manifest::class, new Manifest(
-            new Filesystem,
-            $this->app->basePath(),
-            $this->app->bootstrapPath().'/cache/plugins.php'
-        ));
-    }
 }

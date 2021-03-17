@@ -16,6 +16,12 @@ class BasePlugin
 	protected $root;
 
 	/**
+	 * The routes the plugin uses.
+	 * @var array
+	 */
+	public $routes = [];
+
+	/**
 	 * Constructor.
 	 *
 	 * @return void
